@@ -62,6 +62,7 @@ export class DevAppLayout {
     {name: 'CDK Experimental Combobox', route: '/cdk-experimental-combobox'},
     {name: 'CDK Experimental Listbox', route: '/cdk-experimental-listbox'},
     {name: 'CDK Experimental Tabs', route: '/cdk-experimental-tabs'},
+    {name: 'CDK Experimental Grid', route: '/cdk-experimental-grid'},
     {name: 'CDK Listbox', route: '/cdk-listbox'},
     {name: 'CDK Menu', route: '/cdk-menu'},
     {name: 'Autocomplete', route: '/autocomplete'},

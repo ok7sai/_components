@@ -1,0 +1,51 @@
+<div class="example-grid-controls">
+    <mat-checkbox [formControl]="gridDisabled">Grid Disabled</mat-checkbox>
+    <mat-checkbox [formControl]="gridReadonly">Grid Readonly</mat-checkbox>
+    <mat-checkbox [formControl]="wrapRows">Wrap Rows</mat-checkbox>
+    <mat-checkbox [formControl]="wrapCols">Wrap Cols</mat-checkbox>
+  
+    <mat-form-field subscriptSizing="dynamic" appearance="outline">
+      <mat-label>Disabled Cells</mat-label>
+      <mat-select [formControl]="disabledCellsControl" [compareWith]="compareCellCoords" multiple>
+        @for (cell of allCellsFlat; track cell.value) {
+          <mat-option [value]="cell.value">{{cell.label}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  <div class="example-grid-container">
+    <div
+      cdkGrid
+      class="example-grid"
+      [style.gridTemplateColumns]="'repeat(' + (gridData[0].length || 1) + ', auto)'"
+      [disabled]="gridDisabled.value"
+      [readonly]="gridReadonly.value"
+      [wrapRows]="wrapRows.value"
+      [wrapCols]="wrapCols.value"
+      aria-labelledby="grid-label">
+  
+      <div id="grid-label" class="cdk-visually-hidden">Data Grid Example: User Information</div>
+  
+      @for (row of gridData; track rIndex; let rIndex = $index) {
+        <div
+          cdkGridRow
+          class="example-grid-row"
+          [ariaRowIndex]="rIndex">
+  
+          @for (cellContent of row; track cIndex; let cIndex = $index) {
+            <div
+              cdkGridCell
+              class="example-grid-cell"
+              [class.example-column-header]="getCellType(rIndex, cIndex) === 'columnheader'"
+              [class.example-row-header]="getCellType(rIndex, cIndex) === 'rowheader'"
+              [ariaColIndex]="cIndex"
+              [disabled]="isCellDisabled(rIndex, cIndex)"
+              [ariaCellType]="getCellType(rIndex, cIndex)">
+              {{ cellContent }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>

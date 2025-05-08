@@ -1,0 +1,18 @@
+load("//tools:defaults.bzl", "ts_project")
+
+package(default_visibility = ["//visibility:public"])
+
+ts_project(
+    name = "grid",
+    srcs = [
+        "grid.ts",
+        "grid-cell.ts",
+        "grid-row.ts",
+    ],
+    deps = [
+        "//:node_modules/@angular/core",
+        "//src/cdk-experimental/ui-patterns/behaviors/event-manager",
+        "//src/cdk-experimental/ui-patterns/behaviors/grid-navigation",
+        "//src/cdk-experimental/ui-patterns/behaviors/signal-like",
+    ],
+)

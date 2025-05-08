@@ -1,0 +1,80 @@
+.example-grid-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+  }
+
+  .example-grid-controls mat-form-field {
+    width: 250px; /* Give select some width */
+  }
+
+  .example-grid-container {
+    margin-top: 20px;
+    width: fit-content; /* Adjust as needed */
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+  }
+
+  .example-grid {
+    display: grid;
+    border: 1px solid #ccc;
+    gap: 1px; /* Creates cell borders by showing the grid background */
+    background-color: #ccc; /* Color for the 1px gaps (borders) */
+    border-radius: 4px;
+    overflow: hidden; /* Ensures border-radius clips content */
+  }
+
+  .example-grid-row {
+    /* Rows are logical containers; cells are direct children of the CSS grid */
+    display: contents;
+  }
+
+  .example-grid-cell {
+    padding: 10px 14px;
+    background-color: #fff;
+    min-width: 100px; /* Minimum width for cells */
+    text-align: left;
+    outline: none; /* Remove default browser outline */
+    white-space: nowrap; /* Prevent text wrapping in cells */
+  }
+
+  .example-grid-cell.example-column-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    position: sticky; /* Make headers sticky if grid scrolls */
+    top: 0;
+    z-index: 1;
+  }
+
+  .example-grid-cell.example-row-header {
+    font-weight: bold;
+    background-color: #f5f5f5;
+    /* position: sticky; left: 0;  Enable if horizontal scroll and sticky row headers are desired */
+  }
+
+  /* Style for the currently navigable/active cell (roving tabindex) */
+  .example-grid-cell[tabindex='0'] {
+    outline: 2px solid dodgerblue;
+    outline-offset: -2px; /* Outline inside the cell */
+    position: relative; /* Ensures outline is drawn correctly, especially with sticky headers */
+  }
+
+  .example-grid-cell[aria-disabled='true'] {
+    color: #aaa;
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+  }
+
+  /* Standard class for visually hidden elements used for ARIA */
+  .cdk-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+    position: absolute;
+  }

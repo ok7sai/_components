@@ -12,3 +12,6 @@ export * from './radio/radio-group';
 export * from './radio/radio';
 export * from './behaviors/signal-like/signal-like';
 export * from './tabs/tabs';
+export * from './grid/grid';
+export * from './grid/grid-cell';
+export * from './grid/grid-row';
