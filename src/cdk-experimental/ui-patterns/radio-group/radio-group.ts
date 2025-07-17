@@ -228,3 +228,5 @@ export class RadioGroupPattern<V> {
     return this.inputs.items().find(i => i.element() === element);
   }
 }
+
+export type RadioGroupPatternType<V> = InstanceType<typeof RadioGroupPattern<V>>;

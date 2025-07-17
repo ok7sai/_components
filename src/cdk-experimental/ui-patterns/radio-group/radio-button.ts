@@ -7,20 +7,11 @@
  */
 
 import {computed} from '@angular/core';
-import {ListSelection, ListSelectionItem} from '../behaviors/list-selection/list-selection';
-import {ListNavigation, ListNavigationItem} from '../behaviors/list-navigation/list-navigation';
-import {ListFocus, ListFocusItem} from '../behaviors/list-focus/list-focus';
+import {ListSelectionItem} from '../behaviors/list-selection/list-selection';
+import {ListNavigationItem} from '../behaviors/list-navigation/list-navigation';
+import {ListFocusItem} from '../behaviors/list-focus/list-focus';
 import {SignalLike} from '../behaviors/signal-like/signal-like';
-
-/**
- * Represents the properties exposed by a radio group that need to be accessed by a radio button.
- * This exists to avoid circular dependency errors between the radio group and radio button.
- */
-interface RadioGroupLike<V> {
-  focusManager: ListFocus<RadioButtonPattern<V>>;
-  selection: ListSelection<RadioButtonPattern<V>, V>;
-  navigation: ListNavigation<RadioButtonPattern<V>>;
-}
+import type {RadioGroupPatternType} from './radio-group';
 
 /** Represents the required inputs for a radio button in a radio group. */
 export interface RadioButtonInputs<V>
@@ -28,7 +19,7 @@ export interface RadioButtonInputs<V>
     ListSelectionItem<V>,
     ListFocusItem {
   /** A reference to the parent radio group. */
-  group: SignalLike<RadioGroupLike<V> | undefined>;
+  group: SignalLike<RadioGroupPatternType<V> | undefined>;
 }
 
 /** Represents a radio button within a radio group. */
@@ -59,7 +50,7 @@ export class RadioButtonPattern<V> {
   disabled: SignalLike<boolean>;
 
   /** A reference to the parent radio group. */
-  group: SignalLike<RadioGroupLike<V> | undefined>;
+  group: SignalLike<RadioGroupPatternType<V> | undefined>;
 
   /** The tabindex of the radio button. */
   tabindex = computed(() => this.group()?.focusManager.getItemTabindex(this));
